@@ -28,7 +28,8 @@
                  [ring/ring-core "1.6.2"]
                  [ring/ring-defaults "0.3.0"]
                  [selmer "1.10.9"]
-                 [cheshire "5.7.1"]]
+                 [cheshire "5.7.1"]
+                 [digest "1.4.5"]]
 
   :min-lein-version "2.0.0"
 
