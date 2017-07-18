@@ -19,7 +19,7 @@
     st/string]])
 
 (defn validate-user [user]
-  (st/validate user user-schema))
+  (first (st/validate user user-schema)))
 
 (defn save-user! [{:keys [params]}]
   (if-let [errors (validate-user params)]
