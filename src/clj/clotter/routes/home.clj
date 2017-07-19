@@ -22,9 +22,8 @@
 (defn validate-message [params]
   (first (st/validate params message-schema)))
 
-(defn home-page []
-  (layout/render
-    "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
+(defn index-page []
+  (layout/render "index.html"))
 
 (defn about-page []
   (layout/render "about.html"))
@@ -35,6 +34,6 @@
       (content-type "application/json")))
 
 (defroutes home-routes
-  (GET "/" [] (health-check))
-  (GET "/man" [] (home-page))
+  (GET "/" [] (index-page))
+  (GET "/health" [] (health-check))
   (GET "/about" [] (about-page)))

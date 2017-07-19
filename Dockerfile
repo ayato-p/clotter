@@ -1,5 +1,5 @@
 FROM java:8-alpine
-MAINTAINER Your Name <you@example.com>
+MAINTAINER  Shunsuke Tadokoro <s.tadokoro0317@gmail.com>
 
 ADD target/uberjar/clotter.jar /clotter/app.jar
 

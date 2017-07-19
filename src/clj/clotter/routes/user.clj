@@ -27,6 +27,5 @@
         bad-request
         (content-type "application/json"))
     (do
-      ;; (db/create-user!
-      ;;  (assoc params :admin false :last-login (java.time.LocalDateTime/now) :is-active true))
+      (db/create-user!(assoc params :admin false :is-active true))
       (ch/generate-string {:userId (get params :id)}))))
