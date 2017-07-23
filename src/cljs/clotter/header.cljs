@@ -2,8 +2,9 @@
   (:require [reagent.core :as r :refer [atom]]))
 
 (defn header []
-  [:header {:className "header"}
-   [:nav
-    [:ul
-     [:li [:a "Home"]]
-     [:li [:a "Notification"]]]]])
+  [:header.navbar.navbar-default
+   [:div.container-fluid
+    [:nav.collapse.navbar-collapse
+    [:ul.nav.navbar-nav
+     [:li [:a [:i.fa.fa-home] "Home"]]
+     [:li [:a [:i.fa.fa-bell-o] "Notification"]]]]]])
