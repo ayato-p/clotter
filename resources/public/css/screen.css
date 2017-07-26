@@ -137,11 +137,17 @@ main {
     position: relative;
     text-align: right;
     overflow: hidden;
-    height: 0;
+    max-height: 0;
+    transition: .35s ease;
 }
 
 #inputField .actionArea.input-open {
-    height: 35px;
+    max-height: 35px;
+    opacity: 1;
+}
+
+#inputField .actionArea .btn {
+    box-shadow: none;
 }
 
 #inputField .actionArea .count {
