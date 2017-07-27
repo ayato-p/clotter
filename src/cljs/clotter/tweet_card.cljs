@@ -6,7 +6,7 @@
      [:img.thumbnail {:src (:thumbnail t) :width 42 :height 42}]]
     [:div.content {:data-tweet-id (:id t)}
      [:h3.userNames [:a {:href (str "/usr" (:user-id t))} [:span.userName (:user-name t)] [:span.userId (str "@" (:user-id t))]]]
-     [:time (if (> (- (. js/Date now) (:created-datetime t)) (* 1000 60 60 24 3)) ;; 3日以内のツイートは「~ago」
+     [:time.time (if (> (- (. js/Date now) (:created-datetime t)) (* 1000 60 60 24 3)) ;; 3日以内のツイートは「~ago」
               (.format (js/moment. (:created-datetime t)) "YYYY/MM/DD")
               (.fromNow (js/moment. (:created-datetime t))))]
       [:p (:content t)]
