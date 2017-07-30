@@ -16,7 +16,7 @@
             (->User "guido" "s.tadokoro0317+t7@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" true)
             (->User "ken" "s.tadokoro0317+t8@gmail.com" "NML" "2017-06-20 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" true)
             (->User "yukihiro" "s.tadokoro0317+t9@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" false)
-            (->User "hogehoge" "s.tadokoro0317+t10@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" true)])
+            (->User "hogehoge" "s.tadokoro0317+t10@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" true)])o
 
 (defn create-user-sql [users]
   (map (fn [u]
@@ -57,12 +57,18 @@
                    "デビュー" "サクセス" "ガンギマリ" "爆速" "カリスマ" "カーニバル" "おいしい" "女子大生" "考古学" "助けて" "大炎上" "特殊部隊" "仙人" "暴動"
                    "管理人" "先生" "ぶっちゃけ" "極上" "ダイナマイト" "ユビキタス" "健康法" "決定版" "謝罪会見" "キムチチゲ" "ベリーマッチ" "音速" "チルドレン"
                    "ホラーショー" "めっちゃ" "ジェントルメン" "御一行様" "行くぞ!" "たまらねえ" "大好き☆" "特攻野郎" "おじいちゃん" "愚連隊"
-                   "鉄道" "世界遺産" "ゴールデン" "ハイパー" "伝説" "最強" "銀河系" "やめろ！"])
+                   "鉄道" "世界遺産" "ゴールデン" "ハイパー" "伝説" "最強" "銀河系" "やめろ！" "激おこ"])
 
 (defn create-tweet [phrases n]
   (take n (repeatedly
            (fn [] (s/join (take (+ (rand-int 2) 2)
-                        (repeatedly #(rand-nth phrases))))))))
+                                (repeatedly #(rand-nth phrases))))))))
+
+(defn create-tweet-sql [tweets]
+  (map (fn [t]
+         (str "INSERT INTO tweet (user_id, content) VALUES "
+              "(" (rand-nth (map :id users)) "," t  ")"))
+       tweets))
 
 (defn create-test-data [project]
   ;; user
