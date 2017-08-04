@@ -6,7 +6,8 @@
             [clotter.db.core :as db]
             [ring.util.response :refer [redirect]]
             [struct.core :as st]
-            [cheshire.core :as ch]))
+            [cheshire.core :as ch]
+            [clotter.service.image :refer [uploadToS3]]))
 
 (def message-schema
   [[:name
@@ -26,6 +27,8 @@
   (layout/render "index.html"))
 
 (defn about-page []
+  (println "about")
+  (uploadToS3 (java.io.FileInputStream. "resources/public/img/warning_clojure.png") "imagetest" 100 100 )
   (layout/render "about.html"))
 
 (defn health-check []

@@ -1,4 +1,9 @@
 {:dev true
  :port 3000
  ;; when :nrepl-port is set the application starts the nREPL server on load
- :nrepl-port 7000}
+ :nrepl-port 7000
+ :image {:limit {:width 500
+                 :height 500}
+         :ext "jpg"}
+ :s3 {:region "ap-northeast-1"
+      :bucket "clotter"}}
