@@ -9,8 +9,7 @@
   (import [java.io InputStream]))
 
 (defn uploadToS3 [^InputStream image ^String name w h]
-  (let [is (format/as-stream (resize image w h) "jpg")
-        putObj (s3/)]
+  (let [is (format/as-stream (resize image w h) "jpg")]
     (with-credential [(-> env :aws-key) (-> env :aws-secret) (-> env :s3 :region)]
       (s3/put-object (-> env :s3 :bucket)
                    (str name ".jpg")
