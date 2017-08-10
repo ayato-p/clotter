@@ -7,7 +7,7 @@
 
 (defrecord User [id email auth_type last_login hashed_pass is_active])
 
-(def users [(->User "todokr" "s.tadokoro0317@gmail.com" "ADM" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" 1)
+(def users [(->User "todokr" "s.tadokoro0317+adminb@gmail.com" "ADM" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" 1)
             (->User "rich" "s.tadokoro0317+t1@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" 1)
             (->User "larry" "s.tadokoro0317+t2@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" 1)
             (->User "aran" "s.tadokoro0317+t3@gmail.com" "NML" "2017-07-29 10:00:00" "5E884898DA28047151D0E56F8DC6292773603D0D6AABBDD62A11EF721D1542D8" 1)
@@ -23,7 +23,7 @@
   (s/join "\n" (map (fn [u]
                       (str "INSERT INTO user (id, email, auth_type, last_login, hashed_pass, is_active) VALUES "
                            "('" (:id u) "', '" (:email u) "', '" (:auth_type u) "', '" (:last_login u) "', '"
-                           (:hashed_pass u) "', '" (:is_active u) "');"))
+                           (:hashed_pass u) "', " (:is_active u) ");"))
                     users)))
 
 ;; follow --------------------------------------------------
@@ -73,8 +73,7 @@
                                       (fn [] (s/join (take (+ (rand-int 2) 2)
                                                            (repeatedly #(rand-nth phrases))))))))))
 ;; favorite
-
-(defn create-favorite-sql [users tweet-size]
+(defn create-favorite-sql [users tweet-size] ;; TODO 重複をなくす
   (s/join "\n"
           (take tweet-size
                 (repeatedly (fn []
@@ -82,7 +81,7 @@
                                    "('" (rand-nth (map :id users)) "', " (rand-int tweet-size) ");"))))))
 
 ;; retweet
-(defn create-retweet-sql [users tweet-size]
+(defn create-retweet-sql [users tweet-size] ;; TODO 重複をなくす
   (s/join "\n"
           (take tweet-size
                 (repeatedly (fn []
@@ -90,25 +89,21 @@
                                    "('" (rand-nth (map :id users)) "', " (rand-int tweet-size) ");"))))))
 
 ;; reply
-
-(defn create-reply-sql [users tweet-size]
+(defn create-reply-sql [tweet-size]
   (s/join "\n"
           (loop [i 1 acc []]
             (cond
               (> (- i 5) tweet-size) (reverse acc)
-              (= (rem i 10) 0) (recur (+ i 1) (cons (str "INSERT INTO tweet_to (tweet_id, to_id) VALUES (" i ", " (- i 5) ");") acc))
+              (= (rem i 10) 0) (recur (+ i 1) (cons (str "INSERT INTO tweet_reply (to_id, from_id) VALUES (" i ", " (- i 5) ");") acc))
               :else (recur (+ i 1) acc)))))
 
-;; image
-
-
 (defn create-test-data [project]
-  (let [f "resources/migrations/999999999999-create-testdata.up.sql"]
+  (let [f "docker/testdata.sql"]
     (io/delete-file f true)
     (spit f (create-user-sql users) :append true)
     (spit f (create-follows-sql (pair-follows (list-follows users))) :append true)
     (spit f (create-tweet-sql tweet-phrase tweet-size) :append true)
     (spit f (create-favorite-sql users tweet-size) :append true)
     (spit f (create-retweet-sql users tweet-size) :append true)
-    (spit f (create-reply-sql users tweet-size) :append true)
+    (spit f (create-reply-sql tweet-size) :append true)
     ))
