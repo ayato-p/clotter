@@ -73,20 +73,28 @@
                                       (fn [] (s/join (take (+ (rand-int 2) 2)
                                                            (repeatedly #(rand-nth phrases))))))))))
 ;; favorite
-(defn create-favorite-sql [users tweet-size] ;; TODO 重複をなくす
+(defn create-favorites [users tweet-size]
+  (set (take tweet-size
+             (repeatedly #(hash-map :user-id (rand-nth (map :id users))
+                                    :tweet-id (inc (rand-int tweet-size)))))))
+
+(defn create-favorite-sql [favorites]
   (s/join "\n"
-          (take tweet-size
-                (repeatedly (fn []
-                              (str "INSERT INTO tweet_favorite (user_id, tweet_id) VALUES "
-                                   "('" (rand-nth (map :id users)) "', " (rand-int tweet-size) ");"))))))
+          (map #(str "INSERT INTO tweet_favorite (user_id, tweet_id) VALUES "
+                     "('" (:user-id %) "', " (:tweet-id %) ");")
+               favorites)))
 
 ;; retweet
-(defn create-retweet-sql [users tweet-size] ;; TODO 重複をなくす
+(defn create-retweet [users tweet-size]
+  (set (take tweet-size
+             (repeatedly #(hash-map :user-id (rand-nth (map :id users))
+                                    :tweet-id (inc (rand-int tweet-size)))))))
+
+(defn create-retweet-sql [retweets]
   (s/join "\n"
-          (take tweet-size
-                (repeatedly (fn []
-                              (str "INSERT INTO tweet_retweet (user_id, tweet_id) VALUES "
-                                   "('" (rand-nth (map :id users)) "', " (rand-int tweet-size) ");"))))))
+          (map #(str "INSERT INTO tweet_retweet (user_id, tweet_id) VALUES "
+                     "('" (:user-id %) "', " (:tweet-id %) ");")
+               retweets)))
 
 ;; reply
 (defn create-reply-sql [tweet-size]
@@ -98,12 +106,11 @@
               :else (recur (+ i 1) acc)))))
 
 (defn create-test-data [project]
-  (let [f "docker/testdata.sql"]
-    (io/delete-file f true)
-    (spit f (create-user-sql users) :append true)
-    (spit f (create-follows-sql (pair-follows (list-follows users))) :append true)
-    (spit f (create-tweet-sql tweet-phrase tweet-size) :append true)
-    (spit f (create-favorite-sql users tweet-size) :append true)
-    (spit f (create-retweet-sql users tweet-size) :append true)
-    (spit f (create-reply-sql tweet-size) :append true)
-    ))
+  (let [basedir "docker/testdata"]
+    (do
+      (spit (io/file basedir "00_user.sql") (create-user-sql users))
+      (spit (io/file basedir "01_follow.sql") (create-follows-sql (pair-follows (list-follows users))))
+      (spit (io/file basedir "02_tweet.sql") (create-tweet-sql tweet-phrase tweet-size))
+      (spit (io/file basedir "03_favorite.sql") (create-favorite-sql (create-favorites users tweet-size)))
+      (spit (io/file basedir "04_retweet.sql") (create-retweet-sql (create-retweet users tweet-size)))
+      (spit (io/file basedir "05_reply.sql") (create-reply-sql tweet-size)))))
