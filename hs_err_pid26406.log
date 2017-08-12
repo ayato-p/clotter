@@ -1,0 +1,795 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 63963136 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2640), pid=26406, tid=0x00007fb7ea92b700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_131-b11) (build 1.8.0_131-b11)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.131-b11 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fb810082000):  VMThread [stack: 0x00007fb7ea82b000,0x00007fb7ea92c000] [id=26417]
+
+Stack: [0x00007fb7ea82b000,0x00007fb7ea92c000],  sp=0x00007fb7ea92a220,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xac826a]  VMError::report_and_die()+0x2ba
+V  [libjvm.so+0x4fd4cb]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0x8b
+V  [libjvm.so+0x924f53]  os::Linux::commit_memory_impl(char*, unsigned long, bool)+0x103
+V  [libjvm.so+0x9254a9]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0x29
+V  [libjvm.so+0x91f6ca]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2a
+V  [libjvm.so+0x9941e3]  PSVirtualSpace::expand_by(unsigned long)+0x53
+V  [libjvm.so+0x9955e8]  PSYoungGen::resize_generation(unsigned long, unsigned long)+0xf8
+V  [libjvm.so+0x994742]  PSYoungGen::resize(unsigned long, unsigned long)+0x22
+V  [libjvm.so+0x991a1b]  PSScavenge::invoke_no_policy()+0xf3b
+V  [libjvm.so+0x9921a1]  PSScavenge::invoke()+0x41
+V  [libjvm.so+0x948f00]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x70
+V  [libjvm.so+0xac9c87]  VM_ParallelGCFailedAllocation::doit()+0x97
+V  [libjvm.so+0xad1765]  VM_Operation::evaluate()+0x55
+V  [libjvm.so+0xacfb3a]  VMThread::evaluate_operation(VM_Operation*)+0xba
+V  [libjvm.so+0xacfebe]  VMThread::loop()+0x1ce
+V  [libjvm.so+0xad0330]  VMThread::run()+0x70
+V  [libjvm.so+0x927568]  java_start(Thread*)+0x108
+
+VM_Operation (0x00007fb817186d10): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007fb810014000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fb8100e4800 JavaThread "Service Thread" daemon [_thread_blocked, id=26424, stack(0x00007fb7e9d49000,0x00007fb7e9e4a000)]
+  0x00007fb8100c7000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=26423, stack(0x00007fb7e9e4a000,0x00007fb7e9f4b000)]
+  0x00007fb8100c5800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=26422, stack(0x00007fb7e9f4b000,0x00007fb7ea04c000)]
+  0x00007fb8100c2800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=26421, stack(0x00007fb7ea04c000,0x00007fb7ea14d000)]
+  0x00007fb8100be800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=26420, stack(0x00007fb7ea14d000,0x00007fb7ea24e000)]
+  0x00007fb81008e000 JavaThread "Finalizer" daemon [_thread_blocked, id=26419, stack(0x00007fb7ea629000,0x00007fb7ea72a000)]
+  0x00007fb810089800 JavaThread "Reference Handler" daemon [_thread_blocked, id=26418, stack(0x00007fb7ea72a000,0x00007fb7ea82b000)]
+  0x00007fb810014000 JavaThread "main" [_thread_blocked, id=26412, stack(0x00007fb817092000,0x00007fb817193000)]
+
+Other Threads:
+=>0x00007fb810082000 VMThread [stack: 0x00007fb7ea82b000,0x00007fb7ea92c000] [id=26417]
+  0x00007fb8100f7800 WatcherThread [stack: 0x00007fb7e9c48000,0x00007fb7e9d49000] [id=26425]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fb810010430] Threads_lock - owner thread: 0x00007fb810082000
+[0x00007fb810010930] Heap_lock - owner thread: 0x00007fb810014000
+
+Heap:
+ PSYoungGen      total 67584K, used 5096K [0x00000000d7a00000, 0x00000000dc100000, 0x0000000100000000)
+  eden space 62464K, 0% used [0x00000000d7a00000,0x00000000d7a00000,0x00000000db700000)
+  from space 5120K, 99% used [0x00000000db700000,0x00000000dbbfa1c8,0x00000000dbc00000)
+  to   space 5120K, 0% used [0x00000000dbc00000,0x00000000dbc00000,0x00000000dc100000)
+ ParOldGen       total 83456K, used 998K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 1% used [0x0000000086e00000,0x0000000086ef98e8,0x000000008bf80000)
+ Metaspace       used 12983K, capacity 13795K, committed 13952K, reserved 1060864K
+  class space    used 2609K, capacity 2872K, committed 2944K, reserved 1048576K
+
+Card table byte_map: [0x00007fb800876000,0x00007fb800c40000] byte_map_base: 0x00007fb80043f000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fb816562f60
+ Begin Bits: [0x00007fb7f8370000, 0x00007fb7fa1b8000)
+ End Bits:   [0x00007fb7fa1b8000, 0x00007fb7fc000000)
+
+Polling page: 0x00007fb8171b0000
+
+CodeCache: size=245760Kb used=7028Kb max_used=7041Kb free=238731Kb
+ bounds [0x00007fb801000000, 0x00007fb8016f0000, 0x00007fb810000000]
+ total_blobs=2009 nmethods=1681 adapters=241
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 131.875 Thread 0x00007fb8100c7000 1714       3       sun.reflect.Reflection::quickCheckMemberAccess (10 bytes)
+Event: 131.875 Thread 0x00007fb8100c7000 nmethod 1714 0x00007fb8016da690 code [0x00007fb8016da800, 0x00007fb8016daa28]
+Event: 131.875 Thread 0x00007fb8100c7000 1715       3       sun.reflect.ReflectionFactory::inflationThreshold (4 bytes)
+Event: 131.875 Thread 0x00007fb8100c7000 nmethod 1715 0x00007fb8016da390 code [0x00007fb8016da4e0, 0x00007fb8016da610]
+Event: 131.877 Thread 0x00007fb8100c7000 1716       3       sun.reflect.ReflectionFactory::checkInitted (19 bytes)
+Event: 131.877 Thread 0x00007fb8100c7000 nmethod 1716 0x00007fb8016ddbd0 code [0x00007fb8016ddd60, 0x00007fb8016de028]
+Event: 131.879 Thread 0x00007fb8100c7000 1717       3       sun.reflect.Reflection::isSubclassOf (21 bytes)
+Event: 131.880 Thread 0x00007fb8100c7000 nmethod 1717 0x00007fb8016dd690 code [0x00007fb8016dd800, 0x00007fb8016ddae8]
+Event: 131.881 Thread 0x00007fb8100c5800 nmethod 1702 0x00007fb8016db1d0 code [0x00007fb8016db380, 0x00007fb8016db8f8]
+Event: 131.881 Thread 0x00007fb8100c5800 1708       4       clojure.asm.ClassWriter::newClassItem (70 bytes)
+
+GC Heap History (5 events):
+Event: 0.797 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 36352K, used 31232K [0x00000000d7a00000, 0x00000000da280000, 0x0000000100000000)
+  eden space 31232K, 100% used [0x00000000d7a00000,0x00000000d9880000,0x00000000d9880000)
+  from space 5120K, 0% used [0x00000000d9d80000,0x00000000d9d80000,0x00000000da280000)
+  to   space 5120K, 0% used [0x00000000d9880000,0x00000000d9880000,0x00000000d9d80000)
+ ParOldGen       total 83456K, used 0K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 0% used [0x0000000086e00000,0x0000000086e00000,0x000000008bf80000)
+ Metaspace       used 7163K, capacity 7951K, committed 8192K, reserved 1056768K
+  class space    used 1237K, capacity 1264K, committed 1280K, reserved 1048576K
+Event: 0.818 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 36352K, used 4031K [0x00000000d7a00000, 0x00000000dc100000, 0x0000000100000000)
+  eden space 31232K, 0% used [0x00000000d7a00000,0x00000000d7a00000,0x00000000d9880000)
+  from space 5120K, 78% used [0x00000000d9880000,0x00000000d9c6fda8,0x00000000d9d80000)
+  to   space 5120K, 0% used [0x00000000dbc00000,0x00000000dbc00000,0x00000000dc100000)
+ ParOldGen       total 83456K, used 8K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 0% used [0x0000000086e00000,0x0000000086e02000,0x000000008bf80000)
+ Metaspace       used 7163K, capacity 7951K, committed 8192K, reserved 1056768K
+  class space    used 1237K, capacity 1264K, committed 1280K, reserved 1048576K
+}
+Event: 2.038 GC heap before
+{Heap before GC invocations=2 (full 0):
+ PSYoungGen      total 36352K, used 35263K [0x00000000d7a00000, 0x00000000dc100000, 0x0000000100000000)
+  eden space 31232K, 100% used [0x00000000d7a00000,0x00000000d9880000,0x00000000d9880000)
+  from space 5120K, 78% used [0x00000000d9880000,0x00000000d9c6fda8,0x00000000d9d80000)
+  to   space 5120K, 0% used [0x00000000dbc00000,0x00000000dbc00000,0x00000000dc100000)
+ ParOldGen       total 83456K, used 8K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 0% used [0x0000000086e00000,0x0000000086e02000,0x000000008bf80000)
+ Metaspace       used 10536K, capacity 10697K, committed 10880K, reserved 1058816K
+  class space    used 2023K, capacity 2074K, committed 2176K, reserved 1048576K
+Event: 2.062 GC heap after
+Heap after GC invocations=2 (full 0):
+ PSYoungGen      total 67584K, used 5115K [0x00000000d7a00000, 0x00000000dc100000, 0x0000000100000000)
+  eden space 62464K, 0% used [0x00000000d7a00000,0x00000000d7a00000,0x00000000db700000)
+  from space 5120K, 99% used [0x00000000dbc00000,0x00000000dc0fee30,0x00000000dc100000)
+  to   space 5120K, 0% used [0x00000000db700000,0x00000000db700000,0x00000000dbc00000)
+ ParOldGen       total 83456K, used 608K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 0% used [0x0000000086e00000,0x0000000086e983d0,0x000000008bf80000)
+ Metaspace       used 10536K, capacity 10697K, committed 10880K, reserved 1058816K
+  class space    used 2023K, capacity 2074K, committed 2176K, reserved 1048576K
+}
+Event: 131.883 GC heap before
+{Heap before GC invocations=3 (full 0):
+ PSYoungGen      total 67584K, used 67579K [0x00000000d7a00000, 0x00000000dc100000, 0x0000000100000000)
+  eden space 62464K, 100% used [0x00000000d7a00000,0x00000000db700000,0x00000000db700000)
+  from space 5120K, 99% used [0x00000000dbc00000,0x00000000dc0fee30,0x00000000dc100000)
+  to   space 5120K, 0% used [0x00000000db700000,0x00000000db700000,0x00000000dbc00000)
+ ParOldGen       total 83456K, used 608K [0x0000000086e00000, 0x000000008bf80000, 0x00000000d7a00000)
+  object space 83456K, 0% used [0x0000000086e00000,0x0000000086e983d0,0x000000008bf80000)
+ Metaspace       used 12983K, capacity 13795K, committed 13952K, reserved 1060864K
+  class space    used 2609K, capacity 2872K, committed 2944K, reserved 1048576K
+
+Deoptimization events (10 events):
+Event: 131.396 Thread 0x00007fb810014000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fb8014687a8 method=java.util.regex.Pattern$CharProperty.match(Ljava/util/regex/Matcher;ILjava/lang/CharSequence;)Z @ 21
+Event: 131.643 Thread 0x00007fb810014000 Uncommon trap: reason=uninitialized action=reinterpret pc=0x00007fb8015e5884 method=clojure.lang.Compiler.tagOf(Ljava/lang/Object;)Lclojure/lang/Symbol; @ 4
+Event: 131.679 Thread 0x00007fb810014000 Uncommon trap: reason=uninitialized action=reinterpret pc=0x00007fb80163e580 method=clojure.lang.Compiler.tagOf(Ljava/lang/Object;)Lclojure/lang/Symbol; @ 4
+Event: 131.706 Thread 0x00007fb810014000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fb801444a30 method=clojure.lang.Util.equiv(Ljava/lang/Object;Ljava/lang/Object;)Z @ 26
+Event: 131.713 Thread 0x00007fb810014000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fb801444a30 method=clojure.lang.Util.equiv(Ljava/lang/Object;Ljava/lang/Object;)Z @ 26
+Event: 131.713 Thread 0x00007fb810014000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fb801444a30 method=clojure.lang.Util.equiv(Ljava/lang/Object;Ljava/lang/Object;)Z @ 26
+Event: 131.713 Thread 0x00007fb810014000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fb801444a30 method=clojure.lang.Util.equiv(Ljava/lang/Object;Ljava/lang/Object;)Z @ 26
+Event: 131.714 Thread 0x00007fb810014000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fb801191fb0 method=java.lang.String.equals(Ljava/lang/Object;)Z @ 8
+Event: 131.827 Thread 0x00007fb810014000 Uncommon trap: reason=uninitialized action=reinterpret pc=0x00007fb80169ca50 method=clojure.lang.LispReader.read(Ljava/io/PushbackReader;ZLjava/lang/Object;Ljava/lang/Character;Ljava/lang/Object;ZLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; @ 0
+Event: 131.859 Thread 0x00007fb810014000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fb8014328e4 method=java.io.LineNumberReader.read()I @ 16
+
+Internal exceptions (10 events):
+Event: 0.284 Thread 0x00007fb810014000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d82fdbd0) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u131/8869/hotspot/src/share/vm/prims/jvm.cpp, line 1390]
+Event: 1.835 Thread 0x00007fb810014000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d9391050) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u131/8869/hotspot/src/share/vm/prims/jvm.cpp, line 1390]
+Event: 1.835 Thread 0x00007fb810014000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d9391448) thrown at [/HUDSON/workspace/8-2-build-linux-amd64/jdk8u131/8869/hotspot/src/share/vm/prims/jvm.cpp, line 1390]
+Event: 1.877 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb8012e5bd3 to 0x00007fb8012e5e8b
+Event: 1.878 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb8012ba0f3 to 0x00007fb8012ba2e7
+Event: 2.077 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb801330650 to 0x00007fb801330819
+Event: 2.077 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb801330650 to 0x00007fb801330819
+Event: 2.116 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb8012c972f to 0x00007fb8012c97ee
+Event: 2.146 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb8012e680f to 0x00007fb8012e68f5
+Event: 5.247 Thread 0x00007fb810014000 Implicit null exception at 0x00007fb80142137f to 0x00007fb801421489
+
+Events (10 events):
+Event: 131.855 loading class instaparse/core__init
+Event: 131.855 loading class instaparse/core__init done
+Event: 131.857 Thread 0x00007fb810014000 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fb8014328e4
+Event: 131.858 Executing VM operation: RevokeBias
+Event: 131.859 Executing VM operation: RevokeBias done
+Event: 131.859 Thread 0x00007fb810014000 DEOPT PACKING pc=0x00007fb8014328e4 sp=0x00007fb817189840
+Event: 131.859 Thread 0x00007fb810014000 DEOPT UNPACKING pc=0x00007fb801005229 sp=0x00007fb817189758 mode 2
+Event: 131.869 loading class instaparse/clone__init
+Event: 131.869 loading class instaparse/clone__init done
+Event: 131.882 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 103:02 9457989                           /usr/lib/jvm/java-8-oracle/jre/bin/java
+00600000-00601000 rw-p 00000000 103:02 9457989                           /usr/lib/jvm/java-8-oracle/jre/bin/java
+00d3c000-00d5d000 rw-p 00000000 00:00 0                                  [heap]
+86e00000-8bf80000 rw-p 00000000 00:00 0 
+8bf80000-d7a00000 ---p 00000000 00:00 0 
+d7a00000-dc100000 rw-p 00000000 00:00 0 
+dfe00000-100000000 ---p 00000000 00:00 0 
+100000000-1002e0000 rw-p 00000000 00:00 0 
+1002e0000-140000000 ---p 00000000 00:00 0 
+7fb7c4000000-7fb7c4021000 rw-p 00000000 00:00 0 
+7fb7c4021000-7fb7c8000000 ---p 00000000 00:00 0 
+7fb7c8000000-7fb7c8021000 rw-p 00000000 00:00 0 
+7fb7c8021000-7fb7cc000000 ---p 00000000 00:00 0 
+7fb7cc000000-7fb7cc3ef000 rw-p 00000000 00:00 0 
+7fb7cc3ef000-7fb7d0000000 ---p 00000000 00:00 0 
+7fb7d0000000-7fb7d064d000 rw-p 00000000 00:00 0 
+7fb7d064d000-7fb7d4000000 ---p 00000000 00:00 0 
+7fb7d4000000-7fb7d4021000 rw-p 00000000 00:00 0 
+7fb7d4021000-7fb7d8000000 ---p 00000000 00:00 0 
+7fb7d8000000-7fb7d8633000 rw-p 00000000 00:00 0 
+7fb7d8633000-7fb7dc000000 ---p 00000000 00:00 0 
+7fb7dc000000-7fb7dc021000 rw-p 00000000 00:00 0 
+7fb7dc021000-7fb7e0000000 ---p 00000000 00:00 0 
+7fb7e0000000-7fb7e0021000 rw-p 00000000 00:00 0 
+7fb7e0021000-7fb7e4000000 ---p 00000000 00:00 0 
+7fb7e4000000-7fb7e4291000 rw-p 00000000 00:00 0 
+7fb7e4291000-7fb7e8000000 ---p 00000000 00:00 0 
+7fb7e938b000-7fb7e9392000 r--s 00000000 103:02 8135297                   /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7fb7e9392000-7fb7e93b7000 r--p 00000000 103:02 9458723                   /usr/share/locale-langpack/ja/LC_MESSAGES/libc.mo
+7fb7e93b7000-7fb7e9477000 rw-p 00000000 00:00 0 
+7fb7e9477000-7fb7e95b7000 ---p 00000000 00:00 0 
+7fb7e95b7000-7fb7e95c1000 r--s 00116000 103:02 9577467                   /usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar
+7fb7e95c1000-7fb7e95dd000 r--s 00393000 103:02 9577460                   /usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar
+7fb7e95dd000-7fb7e95df000 r--s 00001000 00:2e 1579832                    /home/todokr/.m2/repository/json-html/json-html/0.4.0/json-html-0.4.0.jar
+7fb7e95df000-7fb7e95e0000 r--s 00002000 00:2e 1708827                    /home/todokr/.m2/repository/com/cemerick/piggieback/0.2.2/piggieback-0.2.2.jar
+7fb7e95e0000-7fb7e95e1000 r--s 00002000 00:2e 1708029                    /home/todokr/.m2/repository/cljs-http/cljs-http/0.1.43/cljs-http-0.1.43.jar
+7fb7e95e1000-7fb7e95e2000 r--s 00002000 00:2e 1708848                    /home/todokr/.m2/repository/clj-stacktrace/clj-stacktrace/0.2.8/clj-stacktrace-0.2.8.jar
+7fb7e95e2000-7fb7e95e6000 r--s 00041000 00:2e 1579809                    /home/todokr/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.8.6/jackson-core-2.8.6.jar
+7fb7e95e6000-7fb7e95f3000 r--s 00084000 00:2e 1055107                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-simpleworkflow/1.9.33/aws-java-sdk-simpleworkflow-1.9.33.jar
+7fb7e95f3000-7fb7e95f5000 r--s 00007000 00:2e 1579800                    /home/todokr/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar
+7fb7e95f5000-7fb7e95f7000 r--s 0000c000 00:2e 1316874                    /home/todokr/.m2/repository/org/immutant/web/2.1.6/web-2.1.6.jar
+7fb7e95f7000-7fb7e95f8000 r--s 00002000 00:2e 1182272                    /home/todokr/.m2/repository/clout/clout/2.1.2/clout-2.1.2.jar
+7fb7e95f8000-7fb7e95ff000 r--s 0003f000 00:2e 1182269                    /home/todokr/.m2/repository/commons-codec/commons-codec/1.10/commons-codec-1.10.jar
+7fb7e95ff000-7fb7e9601000 r--s 0000e000 00:2e 1317119                    /home/todokr/.m2/repository/com/taoensso/encore/1.11.2/encore-1.11.2.jar
+7fb7e9601000-7fb7e9603000 r--s 00001000 00:2e 1708855                    /home/todokr/.m2/repository/pjstadig/humane-test-output/0.8.2/humane-test-output-0.8.2.jar
+7fb7e9603000-7fb7e9605000 r--s 0000d000 00:2e 1708025                    /home/todokr/.m2/repository/org/clojure/core.async/0.3.442/core.async-0.3.442.jar
+7fb7e9605000-7fb7e9606000 r--s 00000000 00:2e 1055101                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk/1.9.33/aws-java-sdk-1.9.33.jar
+7fb7e9606000-7fb7e9607000 r--s 00001000 00:2e 1708831                    /home/todokr/.m2/repository/org/clojure/core.cache/0.6.5/core.cache-0.6.5.jar
+7fb7e9607000-7fb7e960c000 r--s 00022000 00:2e 1182620                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-logs/1.9.33/aws-java-sdk-logs-1.9.33.jar
+7fb7e960c000-7fb7e960e000 r--s 0000c000 00:2e 1579831                    /home/todokr/.m2/repository/selmer/selmer/1.10.9/selmer-1.10.9.jar
+7fb7e960e000-7fb7e9614000 r--s 00030000 00:2e 1055103                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-support/1.9.33/aws-java-sdk-support-1.9.33.jar
+7fb7e9614000-7fb7e9616000 r--s 00006000 00:2e 1317118                    /home/todokr/.m2/repository/com/taoensso/nippy/2.7.0/nippy-2.7.0.jar
+7fb7e9616000-7fb7e9618000 r--s 00006000 00:2e 1316846                    /home/todokr/.m2/repository/org/projectodd/wunderboss/wunderboss-web-undertow/0.12.2/wunderboss-web-undertow-0.12.2.jar
+7fb7e9618000-7fb7e961b000 r--s 00007000 00:2e 1838611                    /home/todokr/.m2/repository/net/incongru/watchservice/barbary-watchservice/1.0/barbary-watchservice-1.0.jar
+7fb7e961b000-7fb7e9625000 r--s 000a5000 00:2e 1445774                    /home/todokr/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar
+7fb7e9625000-7fb7e9626000 r--s 00005000 00:2e 1838627                    /home/todokr/.m2/repository/net/cgrand/parsley/0.9.3/parsley-0.9.3.jar
+7fb7e9626000-7fb7e9628000 r--s 00003000 00:2e 1050352                    /home/todokr/.m2/repository/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar
+7fb7e9628000-7fb7e962a000 r--s 00000000 00:2e 1708841                    /home/todokr/.m2/repository/digest/digest/1.4.5/digest-1.4.5.jar
+7fb7e962a000-7fb7e962b000 r--s 00001000 00:2e 1579824                    /home/todokr/.m2/repository/ring/ring-defaults/0.3.0/ring-defaults-0.3.0.jar
+7fb7e962b000-7fb7e962d000 r--s 00027000 00:2e 1446612                    /home/todokr/.m2/repository/net/jpountz/lz4/lz4/1.2.0/lz4-1.2.0.jar
+7fb7e962d000-7fb7e962f000 r--s 0000f000 00:2e 1316850                    /home/todokr/.m2/repository/org/jboss/logging/jboss-logging/3.2.1.Final/jboss-logging-3.2.1.Final.jar
+7fb7e962f000-7fb7e9633000 r--s 00026000 00:2e 1838616                    /home/todokr/.m2/repository/http-kit/http-kit/2.2.0/http-kit-2.2.0.jar
+7fb7e9633000-7fb7e963e000 r--s 00065000 00:2e 1316854                    /home/todokr/.m2/repository/ch/qos/logback/logback-core/1.1.3/logback-core-1.1.3.jar
+7fb7e963e000-7fb7e9642000 r--s 00016000 00:2e 1445770                    /home/todokr/.m2/repository/com/cognitect/transit-java/0.8.324/transit-java-0.8.324.jar
+7fb7e9642000-7fb7e9652000 r--s 00092000 00:2e 1182641                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudsearch/1.9.33/aws-java-sdk-cloudsearch-1.9.33.jar
+7fb7e9652000-7fb7e9658000 r--s 00035000 00:2e 1182625                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-directconnect/1.9.33/aws-java-sdk-directconnect-1.9.33.jar
+7fb7e9658000-7fb7e965a000 r--s 0000f000 00:2e 1838623                    /home/todokr/.m2/repository/strictly-specking-standalone/strictly-specking-standalone/0.1.1/strictly-specking-standalone-0.1.1.jar
+7fb7e965a000-7fb7e965b000 r--s 00004000 00:2e 1839475                    /home/todokr/.m2/repository/buddy/buddy-sign/1.4.0/buddy-sign-1.4.0.jar
+7fb7e965b000-7fb7e9666000 r--s 00085000 00:2e 1317106                    /home/todokr/.m2/repository/org/apache/httpcomponents/httpclient/4.3.3/httpclient-4.3.3.jar
+7fb7e9666000-7fb7e9667000 r--s 00001000 00:2e 1838619                    /home/todokr/.m2/repository/ring-cors/ring-cors/0.1.11/ring-cors-0.1.11.jar
+7fb7e9667000-7fb7e9668000 r--s 00000000 00:2e 1050355                    /home/todokr/.m2/repository/com/google/jsinterop/jsinterop-annotations/1.0.0/jsinterop-annotations-1.0.0.jar
+7fb7e9668000-7fb7e9671000 r--s 0006d000 00:2e 1445757                    /home/todokr/.m2/repository/io/undertow/undertow-servlet/1.3.23.Final/undertow-servlet-1.3.23.Final.jar
+7fb7e9671000-7fb7e9672000 r--s 00029000 00:2e 1579813                    /home/todokr/.m2/repository/cljsjs/react-dom-server/15.5.4-0/react-dom-server-15.5.4-0.jar
+7fb7e9672000-7fb7e9695000 r--s 001b2000 00:2e 1182613                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-ec2/1.9.33/aws-java-sdk-ec2-1.9.33.jar
+7fb7e9695000-7fb7e96a6000 r--s 00094000 00:2e 1182589                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-redshift/1.9.33/aws-java-sdk-redshift-1.9.33.jar
+7fb7e96a6000-7fb7e96a8000 r--s 00002000 00:2e 1446565                    /home/todokr/.m2/repository/riddley/riddley/0.1.12/riddley-0.1.12.jar
+7fb7e96a8000-7fb7e96ae000 r--s 0004a000 00:2e 1182607                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-elastictranscoder/1.9.33/aws-java-sdk-elastictranscoder-1.9.33.jar
+7fb7e96ae000-7fb7e96b9000 r--s 00069000 00:2e 1182601                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-elasticache/1.9.33/aws-java-sdk-elasticache-1.9.33.jar
+7fb7e96b9000-7fb7e96bd000 r--s 00020000 00:2e 1182617                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudwatch/1.9.33/aws-java-sdk-cloudwatch-1.9.33.jar
+7fb7e96bd000-7fb7e96c0000 r--s 00015000 00:2e 1579807                    /home/todokr/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+7fb7e96c0000-7fb7e96c1000 r--s 00000000 00:2e 1182297                    /home/todokr/.m2/repository/crypto-random/crypto-random/1.2.0/crypto-random-1.2.0.jar
+7fb7e96c1000-7fb7e96cd000 r--s 0010b000 00:2e 1050361                    /home/todokr/.m2/repository/org/mozilla/rhino/1.7R5/rhino-1.7R5.jar
+7fb7e96cd000-7fb7e96ce000 r--s 00003000 00:2e 1839474                    /home/todokr/.m2/repository/clojurewerkz/scrypt/1.2.0/scrypt-1.2.0.jar
+7fb7e96ce000-7fb7e96cf000 r--s 00002000 00:2e 1445785                    /home/todokr/.m2/repository/luminus/ring-ttl-session/0.3.2/ring-ttl-session-0.3.2.jar
+7fb7e96cf000-7fb7e96d1000 r--s 00000000 00:2e 1579818                    /home/todokr/.m2/repository/ring-webjars/ring-webjars/0.2.0/ring-webjars-0.2.0.jar
+7fb7e96d1000-7fb7e971c000 r--s 002ff000 00:2e 1839468                    /home/todokr/.m2/repository/org/bouncycastle/bcprov-jdk15on/1.56/bcprov-jdk15on-1.56.jar
+7fb7e971c000-7fb7e971d000 r--s 00028000 00:2e 1050342                    /home/todokr/.m2/repository/com/google/javascript/closure-compiler-externs/v20170521/closure-compiler-externs-v20170521.jar
+7fb7e971d000-7fb7e9720000 r--s 0000f000 00:2e 1182266                    /home/todokr/.m2/repository/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar
+7fb7e9720000-7fb7e9721000 r--s 0000b000 00:2e 1317112                    /home/todokr/.m2/repository/org/iq80/snappy/snappy/0.3/snappy-0.3.jar
+7fb7e9721000-7fb7e9753000 r--s 00592000 00:2e 1050358                    /home/todokr/.m2/repository/org/clojure/google-closure-library/0.0-20170519-fa0499ef/google-closure-library-0.0-20170519-fa0499ef.jar
+7fb7e9753000-7fb7e9755000 r--s 00011000 00:2e 1445778                    /home/todokr/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-smile/2.8.6/jackson-dataformat-smile-2.8.6.jar
+7fb7e9755000-7fb7e9763000 r--s 00092000 00:2e 1055108                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-route53/1.9.33/aws-java-sdk-route53-1.9.33.jar
+7fb7e9763000-7fb7e9764000 r--s 00002000 00:2e 1445787                    /home/todokr/.m2/repository/expiring-map/expiring-map/0.1.8/expiring-map-0.1.8.jar
+7fb7e9764000-7fb7e9765000 r--s 00002000 00:2e 1579816                    /home/todokr/.m2/repository/secretary/secretary/1.2.0/secretary-1.2.0.jar
+7fb7e9765000-7fb7e9766000 r--s 00001000 00:2e 1708836                    /home/todokr/.m2/repository/org/clojure/data.priority-map/0.0.7/data.priority-map-0.0.7.jar
+7fb7e9766000-7fb7e9767000 r--s 00001000 00:2e 919792                     /home/todokr/.m2/repository/org/clojure/data.json/0.2.6/data.json-0.2.6.jar
+7fb7e9767000-7fb7e9768000 r--s 00002000 00:2e 1182278                    /home/todokr/.m2/repository/conman/conman/0.6.7/conman-0.6.7.jar
+7fb7e9768000-7fb7e976f000 r--s 00056000 00:2e 1579795                    /home/todokr/.m2/repository/org/apache/commons/commons-compress/1.9/commons-compress-1.9.jar
+7fb7e976f000-7fb7e9770000 r--s 00001000 00:2e 1316863                    /home/todokr/.m2/repository/org/projectodd/wunderboss/wunderboss-clojure/0.12.2/wunderboss-clojure-0.12.2.jar
+7fb7e9770000-7fb7e9775000 r--s 0009f000 00:2e 1579785                    /home/todokr/.m2/repository/org/webjars/bootstrap/4.0.0-alpha.5/bootstrap-4.0.0-alpha.5.jar
+7fb7e9775000-7fb7e977a000 r--s 00030000 00:2e 1838609                    /home/todokr/.m2/repository/org/ow2/asm/asm-all/4.2/asm-all-4.2.jar
+7fb7e977a000-7fb7e977b000 r--s 00002000 00:2e 1182288                    /home/todokr/.m2/repository/com/carouselapps/to-jdbc-uri/0.5.0/to-jdbc-uri-0.5.0.jar
+7fb7e977b000-7fb7e978c000 r--s 0008a000 00:2e 1054905                    /home/todokr/.m2/repository/joda-time/joda-time/2.9.7/joda-time-2.9.7.jar
+7fb7e978c000-7fb7e9792000 r--s 00036000 00:2e 1182603                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-datapipeline/1.9.33/aws-java-sdk-datapipeline-1.9.33.jar
+7fb7e9792000-7fb7e9798000 r--s 00032000 00:2e 1182610                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-sns/1.9.33/aws-java-sdk-sns-1.9.33.jar
+7fb7e9798000-7fb7e9799000 r--s 00004000 00:2e 919786                     /home/todokr/.m2/repository/org/clojure/tools.namespace/0.2.11/tools.namespace-0.2.11.jar
+7fb7e9799000-7fb7e979a000 r--s 00001000 00:2e 1182286                    /home/todokr/.m2/repository/com/layerware/hugsql-adapter/0.4.7/hugsql-adapter-0.4.7.jar
+7fb7e979a000-7fb7e97a6000 r--s 0007d000 00:2e 1055114                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-s3/1.9.33/aws-java-sdk-s3-1.9.33.jar
+7fb7e97a6000-7fb7e97aa000 r--s 00016000 00:2e 1055115                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-importexport/1.9.33/aws-java-sdk-importexport-1.9.33.jar
+7fb7e97aa000-7fb7e97ab000 r--s 00008000 00:2e 1708830                    /home/todokr/.m2/repository/org/clojure/tools.analyzer.jvm/0.7.0/tools.analyzer.jvm-0.7.0.jar
+7fb7e97ab000-7fb7e97ad000 r--s 00001000 00:2e 1445782                    /home/todokr/.m2/repository/luminus-migrations/luminus-migrations/0.3.9/luminus-migrations-0.3.9.jar
+7fb7e97ad000-7fb7e97ae000 r--s 00006000 00:2e 1579798                    /home/todokr/.m2/repository/org/webjars/webjars-locator-core/0.27/webjars-locator-core-0.27.jar
+7fb7e97ae000-7fb7e97c4000 r--s 000c0000 00:2e 1182595                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-iam/1.9.33/aws-java-sdk-iam-1.9.33.jar
+7fb7e97c4000-7fb7e97c6000 r--s 00001000 00:2e 1838630                    /home/todokr/.m2/repository/net/cgrand/sjacket/0.1.1/sjacket-0.1.1.jar
+7fb7e97c6000-7fb7e97c8000 r--s 00003000 00:2e 1708856                    /home/todokr/.m2/repository/binaryage/env-config/0.2.0/env-config-0.2.0.jar
+7fb7e97c8000-7fb7e97c9000 r--s 00003000 00:2e 1182290                    /home/todokr/.m2/repository/hikari-cp/hikari-cp/1.7.6/hikari-cp-1.7.6.jar
+7fb7e97c9000-7fb7e97ca000 r--s 00004000 00:2e 1445761                    /home/todokr/.m2/repository/org/jboss/spec/javax/annotation/jboss-annotations-api_1.2_spec/1.0.0.Final/jboss-annotations-api_1.2_spec-1.0.0.Final.jar
+7fb7e97ca000-7fb7e97cb000 r--s 00002000 00:2e 1316868                    /home/todokr/.m2/repository/funcool/cuerdas/0.7.2/cuerdas-0.7.2.jar
+7fb7e97cb000-7fb7e97cf000 r--s 00022000 00:2e 1050343                    /home/todokr/.m2/repository/args4j/args4j/2.33/args4j-2.33.jar
+7fb7e97cf000-7fb7e97d9000 r--s 000ea000 00:2e 1182260                    /home/todokr/.m2/repository/mysql/mysql-connector-java/5.1.42/mysql-connector-java-5.1.42.jar
+7fb7e97d9000-7fb7e97db000 r--s 0000b000 00:2e 1055130                    /home/todokr/.m2/repository/amazonica/amazonica/0.3.22/amazonica-0.3.22.jar
+7fb7e97db000-7fb7e97df000 r--s 00014000 00:2e 1182587                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-sts/1.9.33/aws-java-sdk-sts-1.9.33.jar
+7fb7e97df000-7fb7e97e1000 r--s 00012000 00:2e 1838625                    /home/todokr/.m2/repository/hawk/hawk/0.2.11/hawk-0.2.11.jar
+7fb7e97e1000-7fb7e97e3000 r--s 00005000 00:2e 1446573                    /home/todokr/.m2/repository/cheshire/cheshire/5.7.1/cheshire-5.7.1.jar
+7fb7e97e3000-7fb7e97e9000 r--s 00037000 00:2e 1182588                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-sqs/1.9.33/aws-java-sdk-sqs-1.9.33.jar
+7fb7e97e9000-7fb7e97ed000 r--s 0001b000 00:2e 1182612                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudtrail/1.9.33/aws-java-sdk-cloudtrail-1.9.33.jar
+7fb7e97ed000-7fb7e97ee000 r--s 00003000 00:2e 1182275                    /home/todokr/.m2/repository/compojure/compojure/1.6.0/compojure-1.6.0.jar
+7fb7e97ee000-7fb7e97f2000 r--s 00015000 00:2e 1317115                    /home/todokr/.m2/repository/org/tukaani/xz/1.5/xz-1.5.jar
+7fb7e97f2000-7fb7e97f5000 r--s 0001f000 00:2e 1316844                    /home/todokr/.m2/repository/com/zaxxer/HikariCP/2.6.0/HikariCP-2.6.0.jar
+7fb7e97f5000-7fb7e97f9000 r--s 00021000 00:2e 1182631                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-kinesis/1.9.33/aws-java-sdk-kinesis-1.9.33.jar
+7fb7e97f9000-7fb7e97fa000 r--s 00006000 00:2e 1055100                    /home/todokr/.m2/repository/org/imgscalr/imgscalr-lib/4.2/imgscalr-lib-4.2.jar
+7fb7e97fa000-7fb7e97fb000 r--s 00001000 00:2e 1838617                    /home/todokr/.m2/repository/com/stuartsierra/dependency/0.2.0/dependency-0.2.0.jar
+7fb7e97fb000-7fb7e97ff000 r--s 000a8000 00:2e 1708022                    /home/todokr/.m2/repository/org/webjars/momentjs/2.18.1/momentjs-2.18.1.jar
+7fb7e97ff000-7fb7e9801000 r--s 00013000 00:2e 1446564                    /home/todokr/.m2/repository/clj-tuple/clj-tuple/0.2.2/clj-tuple-0.2.2.jar
+7fb7e9801000-7fb7e9812000 r--s 00097000 00:2e 1839469                    /home/todokr/.m2/repository/org/bouncycastle/bcpkix-jdk15on/1.56/bcpkix-jdk15on-1.56.jar
+7fb7e9812000-7fb7e9814000 r--s 0000c000 00:2e 1708854                    /home/todokr/.m2/repository/binaryage/devtools/0.9.4/devtools-0.9.4.jar
+7fb7e9814000-7fb7e9815000 r--s 00003000 00:2e 1579839                    /home/todokr/.m2/repository/hiccup/hiccup/1.0.5/hiccup-1.0.5.jar
+7fb7e9815000-7fb7e9821000 r--s 00071000 00:2e 1182645                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-swf-libraries/1.9.33/aws-java-sdk-swf-libraries-1.9.33.jar
+7fb7e9821000-7fb7e9823000 r--s 0000f000 00:2e 1316865                    /home/todokr/.m2/repository/prismatic/schema/1.0.4/schema-1.0.4.jar
+7fb7e9823000-7fb7e9824000 r--s 00005000 00:2e 1445772                    /home/todokr/.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar
+7fb7e9824000-7fb7e9825000 r--s 00028000 00:2e 1579790                    /home/todokr/.m2/repository/org/webjars/jquery/3.2.1/jquery-3.2.1.jar
+7fb7e9825000-7fb7e982c000 r--s 0004e000 00:2e 1317099                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-ecs/1.9.33/aws-java-sdk-ecs-1.9.33.jar
+7fb7e982c000-7fb7e982e000 r--s 000a7000 00:2e 1579791                    /home/todokr/.m2/repository/org/webjars/font-awesome/4.7.0/font-awesome-4.7.0.jar
+7fb7e982e000-7fb7e9830000 r--s 0000a000 00:2e 1182639                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudwatchmetrics/1.9.33/aws-java-sdk-cloudwatchmetrics-1.9.33.jar
+7fb7e9830000-7fb7e9839000 r--s 00053000 00:2e 1182593                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-elasticbeanstalk/1.9.33/aws-java-sdk-elasticbeanstalk-1.9.33.jar
+7fb7e9839000-7fb7e983b000 r--s 00002000 00:2e 788407                     /home/todokr/.m2/repository/simple-lein-profile-merge/simple-lein-profile-merge/0.1.4/simple-lein-profile-merge-0.1.4.jar
+7fb7e983b000-7fb7e983c000 r--s 00007000 00:2e 1708024                    /home/todokr/.m2/repository/com/cognitect/transit-js/0.8.846/transit-js-0.8.846.jar
+7fb7e983c000-7fb7e983d000 r--s 00001000 00:2e 1708834                    /home/todokr/.m2/repository/org/clojure/core.memoize/0.5.9/core.memoize-0.5.9.jar
+7fb7e983d000-7fb7e983f000 r--s 00001000 00:2e 1445784                    /home/todokr/.m2/repository/luminus-nrepl/luminus-nrepl/0.1.4/luminus-nrepl-0.1.4.jar
+7fb7e983f000-7fb7e9840000 r--s 00004000 00:2e 788437                     /home/todokr/.m2/repository/migratus/migratus/0.9.7/migratus-0.9.7.jar
+7fb7e9840000-7fb7e9843000 r--s 0001a000 00:2e 1445756                    /home/todokr/.m2/repository/org/jboss/xnio/xnio-nio/3.3.6.Final/xnio-nio-3.3.6.Final.jar
+7fb7e9843000-7fb7e9844000 r--s 0002e000 00:2e 1579811                    /home/todokr/.m2/repository/cljsjs/react-dom/15.5.4-0/react-dom-15.5.4-0.jar
+7fb7e9844000-7fb7e984a000 r--s 00033000 00:2e 1182622                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cognitosync/1.9.33/aws-java-sdk-cognitosync-1.9.33.jar
+7fb7e984a000-7fb7e984b000 r--s 00001000 00:2e 1316867                    /home/todokr/.m2/repository/funcool/struct/1.0.0/struct-1.0.0.jar
+7fb7e984b000-7fb7e9854000 r--s 00076000 00:2e 1445755                    /home/todokr/.m2/repository/org/jboss/xnio/xnio-api/3.3.6.Final/xnio-api-3.3.6.Final.jar
+7fb7e9854000-7fb7e9883000 r--s 00226000 00:2e 1050346                    /home/todokr/.m2/repository/com/google/guava/guava/20.0/guava-20.0.jar
+7fb7e9883000-7fb7e9885000 r--s 00004000 00:2e 1445794                    /home/todokr/.m2/repository/potemkin/potemkin/0.4.3/potemkin-0.4.3.jar
+7fb7e9885000-7fb7e9886000 r--s 00005000 00:2e 1838621                    /home/todokr/.m2/repository/figwheel/figwheel/0.5.11/figwheel-0.5.11.jar
+7fb7e9886000-7fb7e9887000 r--s 00005000 00:2e 1054907                    /home/todokr/.m2/repository/clj-time/clj-time/0.14.0/clj-time-0.14.0.jar
+7fb7e9887000-7fb7e9889000 r--s 00001000 00:2e 1182279                    /home/todokr/.m2/repository/com/layerware/hugsql/0.4.7/hugsql-0.4.7.jar
+7fb7e9889000-7fb7e989a000 r--s 000cf000 00:2e 1579796                    /home/todokr/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.3.3/jackson-databind-2.3.3.jar
+7fb7e989a000-7fb7e989c000 r--s 0000e000 00:2e 1055124                    /home/todokr/.m2/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar
+7fb7e989c000-7fb7e98a0000 r--s 00021000 00:2e 1317111                    /home/todokr/.m2/repository/com/amazonaws/amazon-kinesis-client/1.1.0/amazon-kinesis-client-1.1.0.jar
+7fb7e98a0000-7fb7e98a1000 r--s 00000000 00:2e 1182298                    /home/todokr/.m2/repository/crypto-equality/crypto-equality/1.0.0/crypto-equality-1.0.0.jar
+7fb7e98a1000-7fb7e98a2000 r--s 00001000 00:2e 1182271                    /home/todokr/.m2/repository/medley/medley/1.0.0/medley-1.0.0.jar
+7fb7e98a2000-7fb7e98a4000 r--s 0000a000 00:2e 1050363                    /home/todokr/.m2/repository/org/clojure/tools.reader/1.0.0/tools.reader-1.0.0.jar
+7fb7e98a4000-7fb7e98a5000 r--s 00001000 00:2e 919804                     /home/todokr/.m2/repository/karma-reporter/karma-reporter/0.1.0/karma-reporter-0.1.0.jar
+7fb7e98a5000-7fb7e98a7000 r--s 00006000 00:2e 1316855                    /home/todokr/.m2/repository/org/projectodd/wunderboss/wunderboss-web/0.12.2/wunderboss-web-0.12.2.jar
+7fb7e98a7000-7fb7e98a8000 r--s 00001000 00:2e 1182657                    /home/todokr/.m2/repository/buddy/buddy/1.3.0/buddy-1.3.0.jar
+7fb7e98a8000-7fb7e98ad000 r--s 00033000 00:2e 1182650                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-lambda/1.9.33/aws-java-sdk-lambda-1.9.33.jar
+7fb7e98ad000-7fb7e98b0000 r--s 0000a000 00:2e 1316851                    /home/todokr/.m2/repository/org/projectodd/wunderboss/wunderboss-core/0.12.2/wunderboss-core-0.12.2.jar
+7fb7e98b0000-7fb7e98b1000 r--s 00004000 00:2e 1839480                    /home/todokr/.m2/repository/buddy/buddy-auth/1.4.0/buddy-auth-1.4.0.jar
+7fb7e98b1000-7fb7e98b2000 r--s 00001000 00:2e 1446567                    /home/todokr/.m2/repository/mount/mount/0.1.11/mount-0.1.11.jar
+7fb7e98b2000-7fb7e98c1000 r--s 00130000 00:2e 1050348                    /home/todokr/.m2/repository/com/google/protobuf/protobuf-java/3.0.2/protobuf-java-3.0.2.jar
+7fb7e98c1000-7fb7e98c3000 r--s 0000b000 00:2e 1445779                    /home/todokr/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.8.6/jackson-dataformat-cbor-2.8.6.jar
+7fb7e98c3000-7fb7e98d2000 r--s 0009e000 00:2e 1182611                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.9.33/aws-java-sdk-dynamodb-1.9.33.jar
+7fb7e98d2000-7fb7e98d4000 r--s 00006000 00:2e 1446569                    /home/todokr/.m2/repository/reagent/reagent/0.7.0/reagent-0.7.0.jar
+7fb7e98d4000-7fb7e98d5000 r--s 00000000 00:2e 788392                     /home/todokr/.m2/repository/org/clojure/java.classpath/0.2.3/java.classpath-0.2.3.jar
+7fb7e98d5000-7fb7e98d7000 r--s 00004000 00:2e 1445790                    /home/todokr/.m2/repository/metosin/muuntaja/0.3.1/muuntaja-0.3.1.jar
+7fb7e98d7000-7fb7e98d8000 r--s 00000000 00:2e 1317117                    /home/todokr/.m2/repository/robert/hooke/1.3.0/hooke-1.3.0.jar
+7fb7e98d8000-7fb7e98da000 r--s 0000b000 00:2e 1839470                    /home/todokr/.m2/repository/com/lambdaworks/scrypt/1.4.0/scrypt-1.4.0.jar
+7fb7e98da000-7fb7e98df000 r--s 00026000 00:2e 1317100                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudhsm/1.9.33/aws-java-sdk-cloudhsm-1.9.33.jar
+7fb7e98df000-7fb7e98e0000 r--s 00002000 00:2e 1708842                    /home/todokr/.m2/repository/clojure-complete/clojure-complete/0.2.4/clojure-complete-0.2.4.jar
+7fb7e98e0000-7fb7e98ec000 r--s 00075000 00:2e 1055110                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-storagegateway/1.9.33/aws-java-sdk-storagegateway-1.9.33.jar
+7fb7e98ec000-7fb7e98ed000 r--s 00001000 00:2e 1708853                    /home/todokr/.m2/repository/ns-tracker/ns-tracker/0.3.1/ns-tracker-0.3.1.jar
+7fb7e98ed000-7fb7e98ee000 r--s 00002000 00:2e 1050344                    /home/todokr/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar
+7fb7e98ee000-7fb7e98f0000 r--s 00009000 00:2e 1316856                    /home/todokr/.m2/repository/org/jboss/spec/javax/websocket/jboss-websocket-api_1.1_spec/1.1.0.Final/jboss-websocket-api_1.1_spec-1.1.0.Final.jar
+7fb7e98f0000-7fb7e9900000 r--s 0009f000 00:2e 1182591                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-rds/1.9.33/aws-java-sdk-rds-1.9.33.jar
+7fb7e9900000-7fb7e9901000 r--s 00003000 00:2e 1838629                    /home/todokr/.m2/repository/net/cgrand/regex/1.1.0/regex-1.1.0.jar
+7fb7e9901000-7fb7e9902000 r--s 00002000 00:2e 1708847                    /home/todokr/.m2/repository/ring/ring-devel/1.6.2/ring-devel-1.6.2.jar
+7fb7e9902000-7fb7e9903000 r--s 00009000 00:2e 919818                     /home/todokr/.m2/repository/org/clojure/tools.nrepl/0.2.12/tools.nrepl-0.2.12.jar
+7fb7e9903000-7fb7e9905000 r--s 00008000 00:2e 1445766                    /home/todokr/.m2/repository/net/jodah/expiringmap/0.5.8/expiringmap-0.5.8.jar
+7fb7e9905000-7fb7e9909000 r--s 0002b000 00:2e 1316857                    /home/todokr/.m2/repository/org/jboss/spec/javax/servlet/jboss-servlet-api_3.1_spec/1.0.0.Final/jboss-servlet-api_3.1_spec-1.0.0.Final.jar
+7fb7e9909000-7fb7e990a000 r--s 00007000 00:2e 1708832                    /home/todokr/.m2/repository/org/clojure/tools.analyzer/0.6.9/tools.analyzer-0.6.9.jar
+7fb7e990a000-7fb7e990c000 r--s 00003000 00:2e 1316875                    /home/todokr/.m2/repository/org/immutant/core/2.1.6/core-2.1.6.jar
+7fb7e990c000-7fb7e9916000 r--s 00050000 00:2e 1182600                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-elasticloadbalancing/1.9.33/aws-java-sdk-elasticloadbalancing-1.9.33.jar
+7fb7e9916000-7fb7e991e000 r--s 0004b000 00:2e 1317107                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-machinelearning/1.9.33/aws-java-sdk-machinelearning-1.9.33.jar
+7fb7e991e000-7fb7e9920000 r--s 00003000 00:2e 919800                     /home/todokr/.m2/repository/doo/doo/0.1.7/doo-0.1.7.jar
+7fb7e9920000-7fb7e9925000 r--s 0004d000 00:2e 1579786                    /home/todokr/.m2/repository/org/webjars/bower/tether/1.4.0/tether-1.4.0.jar
+7fb7e9925000-7fb7e9960000 r--s 003ea000 00:2e 1050341                    /home/todokr/.m2/repository/com/google/javascript/closure-compiler-unshaded/v20170521/closure-compiler-unshaded-v20170521.jar
+7fb7e9960000-7fb7e9964000 r--s 00025000 00:2e 1445762                    /home/todokr/.m2/repository/io/undertow/undertow-websockets-jsr/1.3.23.Final/undertow-websockets-jsr-1.3.23.Final.jar
+7fb7e9964000-7fb7e9965000 r--s 00001000 00:2e 1579825                    /home/todokr/.m2/repository/ring/ring-ssl/0.3.0/ring-ssl-0.3.0.jar
+7fb7e9965000-7fb7e9972000 r--s 000a0000 00:2e 1182632                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-opsworks/1.9.33/aws-java-sdk-opsworks-1.9.33.jar
+7fb7e9972000-7fb7e9978000 r--s 00024000 00:2e 1317101                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-ssm/1.9.33/aws-java-sdk-ssm-1.9.33.jar
+7fb7e9978000-7fb7e9979000 r--s 00004000 00:2e 1838615                    /home/todokr/.m2/repository/com/stuartsierra/component/0.3.2/component-0.3.2.jar
+7fb7e9979000-7fb7e997a000 r--s 00005000 00:2e 1445788                    /home/todokr/.m2/repository/markdown-clj/markdown-clj/0.9.99/markdown-clj-0.9.99.jar
+7fb7e997a000-7fb7e997b000 r--s 00003000 00:2e 788435                     /home/todokr/.m2/repository/org/clojure/tools.cli/0.3.5/tools.cli-0.3.5.jar
+7fb7e997b000-7fb7e997d000 r--s 00006000 00:2e 1579823                    /home/todokr/.m2/repository/ring/ring-core/1.6.2/ring-core-1.6.2.jar
+7fb7e997d000-7fb7e9982000 r--s 00034000 00:2e 1050351                    /home/todokr/.m2/repository/com/google/code/gson/gson/2.7/gson-2.7.jar
+7fb7e9982000-7fb7e9984000 r--s 00001000 00:2e 1316872                    /home/todokr/.m2/repository/luminus-immutant/luminus-immutant/0.2.3/luminus-immutant-0.2.3.jar
+7fb7e9984000-7fb7e9986000 r--s 00002000 00:2e 1579792                    /home/todokr/.m2/repository/org/webjars/webjars-locator/0.27/webjars-locator-0.27.jar
+7fb7e9986000-7fb7e9987000 r--s 00001000 00:2e 1579829                    /home/todokr/.m2/repository/ring/ring-headers/0.3.0/ring-headers-0.3.0.jar
+7fb7e9987000-7fb7e9988000 r--s 00001000 00:2e 1182277                    /home/todokr/.m2/repository/ring/ring-codec/1.0.1/ring-codec-1.0.1.jar
+7fb7e9988000-7fb7e9989000 r--s 00001000 00:2e 1708021                    /home/todokr/.m2/repository/com/cognitect/transit-cljs/0.8.239/transit-cljs-0.8.239.jar
+7fb7e9989000-7fb7e998a000 r--s 00053000 00:2e 1708843                    /home/todokr/.m2/repository/prone/prone/1.1.4/prone-1.1.4.jar
+7fb7e998a000-7fb7e9995000 r--s 00062000 00:2e 1182637                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-autoscaling/1.9.33/aws-java-sdk-autoscaling-1.9.33.jar
+7fb7e9995000-7fb7e9997000 r--s 00001000 00:2e 1182287                    /home/todokr/.m2/repository/com/layerware/hugsql-adapter-clojure-java-jdbc/0.4.7/hugsql-adapter-clojure-java-jdbc-0.4.7.jar
+7fb7e9997000-7fb7e9999000 r--s 00009000 00:2e 1316843                    /home/todokr/.m2/repository/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar
+7fb7e9999000-7fb7e999f000 r--s 0003f000 00:2e 1182594                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-glacier/1.9.33/aws-java-sdk-glacier-1.9.33.jar
+7fb7e999f000-7fb7e99a1000 r--s 00001000 00:2e 1055128                    /home/todokr/.m2/repository/image-resizer/image-resizer/0.1.10/image-resizer-0.1.10.jar
+7fb7e99a1000-7fb7e99c8000 r--s 001e3000 00:2e 1445754                    /home/todokr/.m2/repository/io/undertow/undertow-core/1.3.23.Final/undertow-core-1.3.23.Final.jar
+7fb7e99c8000-7fb7e99d4000 r--s 00068000 00:2e 1182643                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-codedeploy/1.9.33/aws-java-sdk-codedeploy-1.9.33.jar
+7fb7e99d4000-7fb7e99d5000 r--s 00008000 00:2e 1839476                    /home/todokr/.m2/repository/buddy/buddy-hashers/1.2.0/buddy-hashers-1.2.0.jar
+7fb7e99d5000-7fb7e99d7000 r--s 00003000 00:2e 1579815                    /home/todokr/.m2/repository/cljsjs/create-react-class/15.5.3-0/create-react-class-15.5.3-0.jar
+7fb7e99d7000-7fb7e99d8000 r--s 00001000 00:2e 1579830                    /home/todokr/.m2/repository/ring/ring-anti-forgery/1.1.0/ring-anti-forgery-1.1.0.jar
+7fb7e99d8000-7fb7e99de000 r--s 0003f000 00:2e 1055123                    /home/todokr/.m2/repository/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.jar
+7fb7e99de000-7fb7e99df000 r--s 00003000 00:2e 1579833                    /home/todokr/.m2/repository/hiccups/hiccups/0.3.0/hiccups-0.3.0.jar
+7fb7e99df000-7fb7e99e5000 r--s 0003f000 00:2e 1316849                    /home/todokr/.m2/repository/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar
+7fb7e99e5000-7fb7e99e6000 r--s 00001000 00:2e 1182259                    /home/todokr/.m2/repository/org/clojure/tools.macro/0.1.5/tools.macro-0.1.5.jar
+7fb7e99e6000-7fb7e99e7000 r--s 00003000 00:2e 1182263                    /home/todokr/.m2/repository/org/clojure/java.jdbc/0.6.1/java.jdbc-0.6.1.jar
+7fb7e99e7000-7fb7e99ec000 r--s 0002b000 00:2e 1182619                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cognitoidentity/1.9.33/aws-java-sdk-cognitoidentity-1.9.33.jar
+7fb7e99ec000-7fb7e99ed000 r--s 0004b000 00:2e 1708857                    /home/todokr/.m2/repository/figwheel-sidecar/figwheel-sidecar/0.5.11/figwheel-sidecar-0.5.11.jar
+7fb7e99ed000-7fb7e99f1000 r--s 0001c000 00:2e 1055109                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-simpledb/1.9.33/aws-java-sdk-simpledb-1.9.33.jar
+7fb7e99f1000-7fb7e99f9000 r--s 00053000 00:2e 1182602                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-emr/1.9.33/aws-java-sdk-emr-1.9.33.jar
+7fb7e99f9000-7fb7e99fc000 r--s 000cf000 00:2e 1838612                    /home/todokr/.m2/repository/net/java/dev/jna/jna/3.2.2/jna-3.2.2.jar
+7fb7e99fc000-7fb7e9a00000 r--s 0002f000 00:2e 1182265                    /home/todokr/.m2/repository/commons-io/commons-io/2.5/commons-io-2.5.jar
+7fb7e9a00000-7fb7e9a05000 r--s 0002d000 00:2e 1182629                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudformation/1.9.33/aws-java-sdk-cloudformation-1.9.33.jar
+7fb7e9a05000-7fb7e9c05000 rw-p 00000000 00:00 0 
+7fb7e9c05000-7fb7e9c48000 r--s 00332000 00:2e 788391                     /home/todokr/.m2/repository/org/clojure/clojure/1.8.0/clojure-1.8.0.jar
+7fb7e9c48000-7fb7e9c49000 ---p 00000000 00:00 0 
+7fb7e9c49000-7fb7e9d49000 rw-p 00000000 00:00 0 
+7fb7e9d49000-7fb7e9d4c000 ---p 00000000 00:00 0 
+7fb7e9d4c000-7fb7e9e4a000 rw-p 00000000 00:00 0 
+7fb7e9e4a000-7fb7e9e4d000 ---p 00000000 00:00 0 
+7fb7e9e4d000-7fb7e9f4b000 rw-p 00000000 00:00 0 
+7fb7e9f4b000-7fb7e9f4e000 ---p 00000000 00:00 0 
+7fb7e9f4e000-7fb7ea04c000 rw-p 00000000 00:00 0 
+7fb7ea04c000-7fb7ea04f000 ---p 00000000 00:00 0 
+7fb7ea04f000-7fb7ea14d000 rw-p 00000000 00:00 0 
+7fb7ea14d000-7fb7ea150000 ---p 00000000 00:00 0 
+7fb7ea150000-7fb7ea24e000 rw-p 00000000 00:00 0 
+7fb7ea24e000-7fb7ea629000 r--p 00000000 103:02 7865051                   /usr/lib/locale/locale-archive
+7fb7ea629000-7fb7ea62c000 ---p 00000000 00:00 0 
+7fb7ea62c000-7fb7ea72a000 rw-p 00000000 00:00 0 
+7fb7ea72a000-7fb7ea72d000 ---p 00000000 00:00 0 
+7fb7ea72d000-7fb7ea82b000 rw-p 00000000 00:00 0 
+7fb7ea82b000-7fb7ea82c000 ---p 00000000 00:00 0 
+7fb7ea82c000-7fb7ec000000 rw-p 00000000 00:00 0 
+7fb7ec000000-7fb7ec021000 rw-p 00000000 00:00 0 
+7fb7ec021000-7fb7f0000000 ---p 00000000 00:00 0 
+7fb7f0000000-7fb7f0021000 rw-p 00000000 00:00 0 
+7fb7f0021000-7fb7f4000000 ---p 00000000 00:00 0 
+7fb7f4000000-7fb7f4021000 rw-p 00000000 00:00 0 
+7fb7f4021000-7fb7f8000000 ---p 00000000 00:00 0 
+7fb7f8000000-7fb7f8001000 r--s 00001000 00:2e 1708846                    /home/todokr/.m2/repository/ring/ring-mock/0.3.1/ring-mock-0.3.1.jar
+7fb7f8001000-7fb7f8002000 r--s 00001000 00:2e 1316866                    /home/todokr/.m2/repository/cprop/cprop/0.1.10/cprop-0.1.10.jar
+7fb7f8002000-7fb7f8003000 r--s 00001000 00:2e 1446574                    /home/todokr/.m2/repository/tigris/tigris/0.1.1/tigris-0.1.1.jar
+7fb7f8003000-7fb7f8007000 r--s 0001c000 00:2e 1317103                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-workspaces/1.9.33/aws-java-sdk-workspaces-1.9.33.jar
+7fb7f8007000-7fb7f800a000 r--s 000b6000 00:2e 1050340                    /home/todokr/.m2/repository/org/clojure/clojurescript/1.9.671/clojurescript-1.9.671.jar
+7fb7f800a000-7fb7fc000000 rw-p 00000000 00:00 0 
+7fb7fc000000-7fb7fc021000 rw-p 00000000 00:00 0 
+7fb7fc021000-7fb800000000 ---p 00000000 00:00 0 
+7fb800000000-7fb800001000 r--s 00004000 00:2e 1182285                    /home/todokr/.m2/repository/com/layerware/hugsql-core/0.4.7/hugsql-core-0.4.7.jar
+7fb800001000-7fb800002000 r--s 0000b000 00:2e 1579812                    /home/todokr/.m2/repository/cljsjs/react/15.5.4-0/react-15.5.4-0.jar
+7fb800002000-7fb800004000 r--s 00006000 00:2e 1446783                    /home/todokr/.m2/repository/buddy/buddy-core/1.2.0/buddy-core-1.2.0.jar
+7fb800004000-7fb800006000 r--s 0000c000 00:2e 1182276                    /home/todokr/.m2/repository/instaparse/instaparse/1.4.0/instaparse-1.4.0.jar
+7fb800006000-7fb800008000 r--s 00004000 00:2e 1445792                    /home/todokr/.m2/repository/metosin/ring-http-response/0.9.0/ring-http-response-0.9.0.jar
+7fb800008000-7fb800013000 r--s 00070000 00:2e 1055122                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-core/1.9.33/aws-java-sdk-core-1.9.33.jar
+7fb800013000-7fb800114000 rw-p 00000000 00:00 0 
+7fb800114000-7fb8002ed000 r--s 03d40000 103:02 9459504                   /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar
+7fb8002ed000-7fb8002ee000 ---p 00000000 00:00 0 
+7fb8002ee000-7fb8003ee000 rw-p 00000000 00:00 0 
+7fb8003ee000-7fb8003ef000 ---p 00000000 00:00 0 
+7fb8003ef000-7fb8004ef000 rw-p 00000000 00:00 0 
+7fb8004ef000-7fb8004f0000 ---p 00000000 00:00 0 
+7fb8004f0000-7fb800619000 rw-p 00000000 00:00 0 
+7fb800619000-7fb800876000 ---p 00000000 00:00 0 
+7fb800876000-7fb80089f000 rw-p 00000000 00:00 0 
+7fb80089f000-7fb800afc000 ---p 00000000 00:00 0 
+7fb800afc000-7fb800b20000 rw-p 00000000 00:00 0 
+7fb800b20000-7fb800c3f000 ---p 00000000 00:00 0 
+7fb800c3f000-7fb800c5c000 rw-p 00000000 00:00 0 
+7fb800c5c000-7fb801000000 ---p 00000000 00:00 0 
+7fb801000000-7fb8016f0000 rwxp 00000000 00:00 0 
+7fb8016f0000-7fb810000000 ---p 00000000 00:00 0 
+7fb810000000-7fb810e39000 rw-p 00000000 00:00 0 
+7fb810e39000-7fb814000000 ---p 00000000 00:00 0 
+7fb814000000-7fb814006000 r--s 00040000 00:2e 1445768                    /home/todokr/.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar
+7fb814006000-7fb81400b000 r--s 00029000 00:2e 1182633                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-ses/1.9.33/aws-java-sdk-ses-1.9.33.jar
+7fb81400b000-7fb814010000 r--s 00024000 00:2e 1182647                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-config/1.9.33/aws-java-sdk-config-1.9.33.jar
+7fb814010000-7fb8140f6000 rw-p 00000000 00:00 0 
+7fb8140f6000-7fb8140f7000 ---p 00000000 00:00 0 
+7fb8140f7000-7fb8141f7000 rw-p 00000000 00:00 0 
+7fb8141f7000-7fb814211000 r-xp 00000000 103:02 9577607                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7fb814211000-7fb814411000 ---p 0001a000 103:02 9577607                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7fb814411000-7fb814412000 rw-p 0001a000 103:02 9577607                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7fb814412000-7fb81441d000 r-xp 00000000 103:02 9700263                   /lib/x86_64-linux-gnu/libnss_files-2.24.so
+7fb81441d000-7fb81461c000 ---p 0000b000 103:02 9700263                   /lib/x86_64-linux-gnu/libnss_files-2.24.so
+7fb81461c000-7fb81461d000 r--p 0000a000 103:02 9700263                   /lib/x86_64-linux-gnu/libnss_files-2.24.so
+7fb81461d000-7fb81461e000 rw-p 0000b000 103:02 9700263                   /lib/x86_64-linux-gnu/libnss_files-2.24.so
+7fb81461e000-7fb814624000 rw-p 00000000 00:00 0 
+7fb814624000-7fb81462f000 r-xp 00000000 103:02 9700265                   /lib/x86_64-linux-gnu/libnss_nis-2.24.so
+7fb81462f000-7fb81482e000 ---p 0000b000 103:02 9700265                   /lib/x86_64-linux-gnu/libnss_nis-2.24.so
+7fb81482e000-7fb81482f000 r--p 0000a000 103:02 9700265                   /lib/x86_64-linux-gnu/libnss_nis-2.24.so
+7fb81482f000-7fb814830000 rw-p 0000b000 103:02 9700265                   /lib/x86_64-linux-gnu/libnss_nis-2.24.so
+7fb814830000-7fb814846000 r-xp 00000000 103:02 9700260                   /lib/x86_64-linux-gnu/libnsl-2.24.so
+7fb814846000-7fb814a45000 ---p 00016000 103:02 9700260                   /lib/x86_64-linux-gnu/libnsl-2.24.so
+7fb814a45000-7fb814a46000 r--p 00015000 103:02 9700260                   /lib/x86_64-linux-gnu/libnsl-2.24.so
+7fb814a46000-7fb814a47000 rw-p 00016000 103:02 9700260                   /lib/x86_64-linux-gnu/libnsl-2.24.so
+7fb814a47000-7fb814a49000 rw-p 00000000 00:00 0 
+7fb814a49000-7fb814a51000 r-xp 00000000 103:02 9700261                   /lib/x86_64-linux-gnu/libnss_compat-2.24.so
+7fb814a51000-7fb814c50000 ---p 00008000 103:02 9700261                   /lib/x86_64-linux-gnu/libnss_compat-2.24.so
+7fb814c50000-7fb814c51000 r--p 00007000 103:02 9700261                   /lib/x86_64-linux-gnu/libnss_compat-2.24.so
+7fb814c51000-7fb814c52000 rw-p 00008000 103:02 9700261                   /lib/x86_64-linux-gnu/libnss_compat-2.24.so
+7fb814c52000-7fb814c7d000 r-xp 00000000 103:02 9577601                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7fb814c7d000-7fb814e7c000 ---p 0002b000 103:02 9577601                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7fb814e7c000-7fb814e7e000 rw-p 0002a000 103:02 9577601                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7fb814e7e000-7fb814e8b000 r-xp 00000000 103:02 9577606                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7fb814e8b000-7fb81508a000 ---p 0000d000 103:02 9577606                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7fb81508a000-7fb81508c000 rw-p 0000c000 103:02 9577606                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7fb81508c000-7fb815093000 r-xp 00000000 103:02 9700270                   /lib/x86_64-linux-gnu/librt-2.24.so
+7fb815093000-7fb815292000 ---p 00007000 103:02 9700270                   /lib/x86_64-linux-gnu/librt-2.24.so
+7fb815292000-7fb815293000 r--p 00006000 103:02 9700270                   /lib/x86_64-linux-gnu/librt-2.24.so
+7fb815293000-7fb815294000 rw-p 00007000 103:02 9700270                   /lib/x86_64-linux-gnu/librt-2.24.so
+7fb815294000-7fb81539c000 r-xp 00000000 103:02 9700257                   /lib/x86_64-linux-gnu/libm-2.24.so
+7fb81539c000-7fb81559b000 ---p 00108000 103:02 9700257                   /lib/x86_64-linux-gnu/libm-2.24.so
+7fb81559b000-7fb81559c000 r--p 00107000 103:02 9700257                   /lib/x86_64-linux-gnu/libm-2.24.so
+7fb81559c000-7fb81559d000 rw-p 00108000 103:02 9700257                   /lib/x86_64-linux-gnu/libm-2.24.so
+7fb81559d000-7fb81626c000 r-xp 00000000 103:02 9577584                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7fb81626c000-7fb81646c000 ---p 00ccf000 103:02 9577584                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7fb81646c000-7fb816545000 rw-p 00ccf000 103:02 9577584                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7fb816545000-7fb816590000 rw-p 00000000 00:00 0 
+7fb816590000-7fb81674e000 r-xp 00000000 103:02 9700253                   /lib/x86_64-linux-gnu/libc-2.24.so
+7fb81674e000-7fb81694d000 ---p 001be000 103:02 9700253                   /lib/x86_64-linux-gnu/libc-2.24.so
+7fb81694d000-7fb816951000 r--p 001bd000 103:02 9700253                   /lib/x86_64-linux-gnu/libc-2.24.so
+7fb816951000-7fb816953000 rw-p 001c1000 103:02 9700253                   /lib/x86_64-linux-gnu/libc-2.24.so
+7fb816953000-7fb816957000 rw-p 00000000 00:00 0 
+7fb816957000-7fb81695a000 r-xp 00000000 103:02 9700256                   /lib/x86_64-linux-gnu/libdl-2.24.so
+7fb81695a000-7fb816b59000 ---p 00003000 103:02 9700256                   /lib/x86_64-linux-gnu/libdl-2.24.so
+7fb816b59000-7fb816b5a000 r--p 00002000 103:02 9700256                   /lib/x86_64-linux-gnu/libdl-2.24.so
+7fb816b5a000-7fb816b5b000 rw-p 00003000 103:02 9700256                   /lib/x86_64-linux-gnu/libdl-2.24.so
+7fb816b5b000-7fb816b70000 r-xp 00000000 103:02 9577579                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/jli/libjli.so
+7fb816b70000-7fb816d70000 ---p 00015000 103:02 9577579                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/jli/libjli.so
+7fb816d70000-7fb816d71000 rw-p 00015000 103:02 9577579                   /usr/lib/jvm/java-8-oracle/jre/lib/amd64/jli/libjli.so
+7fb816d71000-7fb816d89000 r-xp 00000000 103:02 9700268                   /lib/x86_64-linux-gnu/libpthread-2.24.so
+7fb816d89000-7fb816f89000 ---p 00018000 103:02 9700268                   /lib/x86_64-linux-gnu/libpthread-2.24.so
+7fb816f89000-7fb816f8a000 r--p 00018000 103:02 9700268                   /lib/x86_64-linux-gnu/libpthread-2.24.so
+7fb816f8a000-7fb816f8b000 rw-p 00019000 103:02 9700268                   /lib/x86_64-linux-gnu/libpthread-2.24.so
+7fb816f8b000-7fb816f8f000 rw-p 00000000 00:00 0 
+7fb816f8f000-7fb816fb5000 r-xp 00000000 103:02 9700058                   /lib/x86_64-linux-gnu/ld-2.24.so
+7fb816fb5000-7fb816fb6000 r--s 00002000 00:2e 1055102                    /home/todokr/.m2/repository/org/clojure/algo.generic/0.1.2/algo.generic-0.1.2.jar
+7fb816fb6000-7fb816fc8000 r--s 000a9000 00:2e 1182628                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudfront/1.9.33/aws-java-sdk-cloudfront-1.9.33.jar
+7fb816fc8000-7fb817092000 rw-p 00000000 00:00 0 
+7fb817092000-7fb817095000 ---p 00000000 00:00 0 
+7fb817095000-7fb817195000 rw-p 00000000 00:00 0 
+7fb817195000-7fb817196000 r--s 00001000 00:2e 1579787                    /home/todokr/.m2/repository/org/clojure/tools.logging/0.4.0/tools.logging-0.4.0.jar
+7fb817196000-7fb817197000 r--s 0000f000 00:2e 1050360                    /home/todokr/.m2/repository/org/clojure/google-closure-library-third-party/0.0-20170519-fa0499ef/google-closure-library-third-party-0.0-20170519-fa0499ef.jar
+7fb817197000-7fb817198000 r--s 00001000 00:2e 1182295                    /home/todokr/.m2/repository/org/tobereplaced/lettercase/1.0.0/lettercase-1.0.0.jar
+7fb817198000-7fb81719f000 r--s 00064000 00:2e 1579801                    /home/todokr/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar
+7fb81719f000-7fb8171a5000 r--s 00038000 00:2e 1055120                    /home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.9.33/aws-java-sdk-kms-1.9.33.jar
+7fb8171a5000-7fb8171a6000 r--s 00002000 00:2e 1708031                    /home/todokr/.m2/repository/noencore/noencore/0.3.3/noencore-0.3.3.jar
+7fb8171a6000-7fb8171a7000 r--s 00001000 00:2e 1445769                    /home/todokr/.m2/repository/com/cognitect/transit-clj/0.8.300/transit-clj-0.8.300.jar
+7fb8171a7000-7fb8171af000 rw-s 00000000 103:02 1055140                   /tmp/hsperfdata_todokr/26406
+7fb8171af000-7fb8171b0000 rw-p 00000000 00:00 0 
+7fb8171b0000-7fb8171b1000 ---p 00000000 00:00 0 
+7fb8171b1000-7fb8171b4000 rw-p 00000000 00:00 0 
+7fb8171b4000-7fb8171b5000 r--p 00025000 103:02 9700058                   /lib/x86_64-linux-gnu/ld-2.24.so
+7fb8171b5000-7fb8171b6000 rw-p 00026000 103:02 9700058                   /lib/x86_64-linux-gnu/ld-2.24.so
+7fb8171b6000-7fb8171b7000 rw-p 00000000 00:00 0 
+7fff2cb48000-7fff2cb6f000 rw-p 00000000 00:00 0                          [stack]
+7fff2cbd2000-7fff2cbd4000 r--p 00000000 00:00 0                          [vvar]
+7fff2cbd4000-7fff2cbd6000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 -Dconf=.lein-env -Dclojure.compile.path=/home/todokr/git-project/clotter/target/base+system+user+dev+dev/classes -Dclotter.version=0.1.0-SNAPSHOT -Dclojure.debug=false 
+java_command: clojure.main -i /tmp/form-init2946713238851375070.clj
+java_class_path (initial): /home/todokr/git-project/clotter/test/clj:/home/todokr/git-project/clotter/env/dev/clj:/home/todokr/git-project/clotter/src/clj:/home/todokr/git-project/clotter/src/cljs:/home/todokr/git-project/clotter/env/dev/resources:/home/todokr/git-project/clotter/dev-resources:/home/todokr/git-project/clotter/resources:/home/todokr/git-project/clotter/target/cljsbuild:/home/todokr/git-project/clotter/target/base+system+user+dev+dev/classes:/home/todokr/.m2/repository/com/cognitect/transit-clj/0.8.300/transit-clj-0.8.300.jar:/home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-cloudfront/1.9.33/aws-java-sdk-cloudfront-1.9.33.jar:/home/todokr/.m2/repository/noencore/noencore/0.3.3/noencore-0.3.3.jar:/home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-kms/1.9.33/aws-java-sdk-kms-1.9.33.jar:/home/todokr/.m2/repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar:/home/todokr/.m2/repository/org/tobereplaced/lettercase/1.0.0/lettercase-1.0.0.jar:/home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-config/1.9.33/aws-java-sdk-config-1.9.33.jar:/home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-ses/1.9.33/aws-java-sdk-ses-1.9.33.jar:/home/todokr/.m2/repository/org/clojure/clojure/1.8.0/clojure-1.8.0.jar:/home/todokr/.m2/repository/com/amazonaws/aws-java-sdk-core/1.9.33/aws-java-sdk-core-1.9.33.jar:/home/todokr/.m2/repository/org/msgpack/msgpack/0.6.12/msgpack-0.6.12.jar:/home/todokr/.m2/repository/org/clojure/google-closure-library-third-party/0.0-20170519-fa0499ef/google-closure-library-third-party-0.0-20170519-fa0499ef.jar:/home/todokr/.m2/repository/metosin/ring-http-response/0.9.0/ring-http-response-0.9.0.jar:/home/todokr/.m2/repository/org/clojure/tools.logging/0.4.0/tools.logging-0.4.0.jar:/home/todokr/.m2/repository/instaparse/instaparse/1.4.0/instaparse-1.4.0.jar:/home/todokr/.m2/repository/buddy/buddy-core/1.2.0/buddy-core-1.2.0.jar:/home/todokr/.m2/repository/org/clojure/clojurescript/1.9.671/clojurescript-1.9.671.jar:/ho
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/java-8-oracle
+CLASSPATH=/home/todokr/.lein/self-installs/leiningen-2.7.1-standalone.jar:tasks
+PATH=/home/todokr/bin:/home/todokr/.local/bin:/home/todokr/.rbenv/shims:/home/todokr/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+SHELL=/bin/zsh
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xac8af0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xac8af0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x921dd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x921dd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x921dd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x921dd0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x923610], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x924a10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x924a10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x924a10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x924a10], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=17.04
+DISTRIB_CODENAME=zesty
+DISTRIB_DESCRIPTION="Ubuntu 17.04"
+
+uname:Linux 4.10.0-30-generic #34-Ubuntu SMP Mon Jul 31 19:38:17 UTC 2017 x86_64
+libc:glibc 2.24 NPTL 2.24 
+rlimit: STACK 8192k, CORE 0k, NPROC 30487, NOFILE 1048576, AS infinity
+load average:32.36 31.31 19.09
+
+/proc/meminfo:
+MemTotal:        7931116 kB
+MemFree:          105624 kB
+MemAvailable:      11060 kB
+Buffers:             580 kB
+Cached:           365768 kB
+SwapCached:            0 kB
+Active:          7137304 kB
+Inactive:         350932 kB
+Active(anon):    7124108 kB
+Inactive(anon):   337292 kB
+Active(file):      13196 kB
+Inactive(file):    13640 kB
+Unevictable:         716 kB
+Mlocked:             716 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               256 kB
+Writeback:             0 kB
+AnonPages:       7122852 kB
+Mapped:           162276 kB
+Shmem:            339200 kB
+Slab:             175340 kB
+SReclaimable:      62320 kB
+SUnreclaim:       113020 kB
+KernelStack:       16424 kB
+PageTables:        83756 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     3965556 kB
+Committed_AS:   14757980 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   3885056 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      329816 kB
+DirectMap2M:     6766592 kB
+DirectMap1G:     1048576 kB
+
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 142 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+stepping	: 9
+microcode	: 0x4e
+cpu MHz		: 2485.992
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		:
+bogomips	: 5808.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+stepping	: 9
+microcode	: 0x4e
+cpu MHz		: 2482.983
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		:
+bogomips	: 5808.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+stepping	: 9
+microcode	: 0x4e
+cpu MHz		: 2484.576
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 2
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		:
+bogomips	: 5808.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 142
+model name	: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz
+stepping	: 9
+microcode	: 0x4e
+cpu MHz		: 2449.353
+cache size	: 4096 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 2
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch epb intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp
+bugs		:
+bogomips	: 5808.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 7931116k(106264k free), swap 0k(0k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.131-b11) for linux-amd64 JRE (1.8.0_131-b11), built on Mar 15 2017 01:23:40 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Sat Aug 12 22:55:23 2017
+elapsed time: 206 seconds (0d 0h 3m 26s)
+

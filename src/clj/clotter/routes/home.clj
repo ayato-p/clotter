@@ -7,8 +7,9 @@
             [ring.util.response :refer [redirect response]]
             [struct.core :as st]
             [cheshire.core :as ch]
+            [buddy.hashers :as hashers]
             [clotter.service.image :refer [uploadToS3]]
-            [buddy.hashers :as hashers]))
+            [clotter.service.tweet :as tw]))
 
 (def message-schema
   [[:name
@@ -34,7 +35,10 @@
   (layout/render "about.html"))
 
 (defn app-page [req]
-  (layout/render "app.html"))
+  (clojure.string/join "\n" (tw/list-timeline "todokr" 10))
+
+  ;(layout/render "app.html")
+  )
 
 (defn health-check []
   (-> (ch/generate-string {:status "ok"})

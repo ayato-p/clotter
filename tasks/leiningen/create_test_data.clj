@@ -66,12 +66,12 @@
 (def tweet-size 10000)
 
 (defn create-tweet-sql [phrases tweet-size]
-  (s/join "\n" (map (fn [t]
+  (s/join "\n" (shuffle (map (fn [t]
          (str "INSERT INTO tweet (user_id, content) VALUES "
               "('" (rand-nth (map :id users)) "', '" t "');"))
                     (take tweet-size (repeatedly
                                       (fn [] (s/join (take (+ (rand-int 2) 2)
-                                                           (repeatedly #(rand-nth phrases))))))))))
+                                                           (repeatedly #(rand-nth phrases)))))))))))
 ;; favorite
 (defn create-favorites [users tweet-size]
   (set (take tweet-size
