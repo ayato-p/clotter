@@ -9,14 +9,6 @@
       {% style "/css/screen.css" %}
   </head>
   <body>
-
-    <form name="input" action="/login" method="POST">
-      {% csrf-field %}
-      Username: <input type="text" name="user">
-      Password: <input type="password" name="pass">
-      <input type="submit" value="Submit">
-   </form>
-
     <div id="app"></div>
 
     <script type="text/javascript">

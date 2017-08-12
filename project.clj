@@ -36,7 +36,8 @@
                  [cheshire "5.7.1"]
                  [digest "1.4.5"]
                  [image-resizer "0.1.10"]
-                 [amazonica "0.3.22"]]
+                 [amazonica "0.3.22"]
+                 [buddy "1.3.0"]]
 
   :min-lein-version "2.0.0"
 

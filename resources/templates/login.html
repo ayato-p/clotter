@@ -3,7 +3,7 @@
   <head>
       <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Welcome to clotter</title>
+      <title>Clotter</title>
       {% style "/css/bootstrap.min.css" %}
       {% style "/assets/font-awesome/css/font-awesome.min.css" %}
       {% style "/css/screen.css" %}
@@ -17,13 +17,10 @@
       <input type="submit" value="Submit">
    </form>
 
-    <div id="app"></div>
-
     <script type="text/javascript">
         var context = "{{servlet-context}}";
         var csrfToken = "{{csrf-token}}";
     </script>
-    {% script "/assets/momentjs/min/moment.min.js" %}
     {% script "/js/app.js" %}
   </body>
 </html>
