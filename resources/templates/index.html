@@ -10,20 +10,18 @@
   </head>
   <body>
 
+    <h1>Clotter</h1>
     <form name="input" action="/login" method="POST">
       {% csrf-field %}
       Username: <input type="text" name="user">
       Password: <input type="password" name="pass">
       <input type="submit" value="Submit">
-   </form>
-
-    <div id="app"></div>
+    </form>
+    <a href="/signup">or signup</a>
 
     <script type="text/javascript">
         var context = "{{servlet-context}}";
         var csrfToken = "{{csrf-token}}";
     </script>
-    {% script "/assets/momentjs/min/moment.min.js" %}
-    {% script "/js/app.js" %}
   </body>
 </html>
