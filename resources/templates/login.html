@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Clotter</title>
       {% style "/css/bootstrap.min.css" %}
@@ -10,6 +10,7 @@
   </head>
   <body>
 
+    <p>{{flash}}</p>
     <form name="input" action="/login" method="POST">
       {% csrf-field %}
       Username: <input type="text" name="user">

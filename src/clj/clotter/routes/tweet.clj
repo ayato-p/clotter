@@ -1,1 +1,0 @@
-(ns clotter.routes.tweet)

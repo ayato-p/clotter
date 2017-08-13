@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <form name="input" action="/signup" method="POST">
+      {% csrf-field %}
+      Username: <input type="text" name="user">
+      Password: <input type="password" name="pass">
+      <input type="submit" value="Submit">
+   </form>
+{% endblock %}
