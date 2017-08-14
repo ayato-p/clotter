@@ -20,12 +20,12 @@ A twitter-like application
 ### insert testdata
 TODO: simplify
 
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/00_user.sql`
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/01_follw.sql`
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/02_tweet.sql`
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/03_favorite.sql`
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/04_retweet.sql`
-1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./testdata/05_reply.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/00_user.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/01_follw.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/02_tweet.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/03_favorite.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/04_retweet.sql`
+1. `$ mysql -h 127.0.0.1 -uroot --password= clotter < ./docker/testdata/05_reply.sql`
 
 ## Run
 1. `$ cd docker && docker-compose start`
